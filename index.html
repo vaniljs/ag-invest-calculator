@@ -26,8 +26,9 @@
                         <input type="text" id="ag-input-invest" inputmode="numeric" placeholder="0">
                     </div>
                     <div class="ag-calc-field">
-                        <label for="ag-input-years">Сколько лет инвестировать</label>
+                        <label for="ag-input-years">Сколько лет инвестировать (от 10)</label>
                         <input type="text" id="ag-input-years" inputmode="numeric" placeholder="0">
+                        <span class="ag-calc-field-hint" id="ag-input-years-hint">Укажите от 10 лет</span>
                     </div>
                 </div>
             </div>
@@ -70,20 +71,16 @@
                 <div class="ag-calc-column ag-calc-hourly-card">
                     <div class="ag-calc-card">
                         <p class="ag-calc-info-title">На работе / В бизнесе</p>
-                        <div class="ag-calc-card-value-wrapper">
-                            <span class="ag-calc-card-value" id="ag-res-hourly-work">0</span>
-                            <span class="ag-calc-card-unit">в 1 час</span>
-                        </div>
+                        <div class="ag-calc-card-value" id="ag-res-hourly-work">0</div>
+                        <span class="ag-calc-card-unit">в 1 час</span>
                         <p class="ag-calc-info-description">Столько приносит ваш 1 час от активной деятельности, приносящей доход.</p>
                     </div>
                 </div>
                 <div class="ag-calc-column ag-calc-hourly-card">
                     <div class="ag-calc-card highlight">
                         <p class="ag-calc-info-title">В долгосрочных инвестициях</p>
-                        <div class="ag-calc-card-value-wrapper">
-                            <span class="ag-calc-card-value" id="ag-res-hourly-invest">0</span>
-                            <span class="ag-calc-card-unit">в 1 час (добавочно)</span>
-                        </div>
+                        <div class="ag-calc-card-value" id="ag-res-hourly-invest">0</div>
+                        <span class="ag-calc-card-unit">в 1 час</span>
                         <div class="ag-calc-card-ratio" id="ag-res-ratio">Больше в 0 раз(а)</div>
                         <p class="ag-calc-info-description">Столько приносят долгосрочные инвестиции, на которые Вы тратите <strong>1 час в год</strong>.</p>
                     </div>

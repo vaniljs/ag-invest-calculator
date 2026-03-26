@@ -46,10 +46,10 @@ const AG_CALC_CONFIG = {
 
     // Значения по умолчанию 
     defaults: {
-        income: 100000,  // Среднемесячный доход (₽)
-        hours: 160,      // Рабочих часов в месяц
-        invest: 15000,   // Ежемесячный взнос (₽)
-        years: 20        // Срок инвестирования (лет)
+        income: 0,  // Среднемесячный доход (₽)
+        hours: 0,      // Рабочих часов в месяц
+        invest: 0,   // Ежемесячный взнос (₽)
+        years: 10        // Срок инвестирования (лет)
     }
 };
 
@@ -89,6 +89,16 @@ document.addEventListener('DOMContentLoaded', function() {
             if (numYears > AG_CALC_CONFIG.maxYears) {
                 originalValue = AG_CALC_CONFIG.maxYears.toString();
             }
+            
+            // Показываем/скрываем уведомление
+            const hint = document.getElementById('ag-input-years-hint');
+            if (hint) {
+                if (originalValue !== '' && numYears < AG_CALC_CONFIG.minYears) {
+                    hint.classList.add('is-visible');
+                } else {
+                    hint.classList.remove('is-visible');
+                }
+            }
         }
 
         input.value = formatNumber(originalValue);
@@ -107,6 +117,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 input.value = formatNumber(originalValue);
                 calculate();
             }
+            
+            // Скрываем уведомление
+            const hint = document.getElementById('ag-input-years-hint');
+            if (hint) {
+                hint.classList.remove('is-visible');
+            }
+        }
+    }
+
+    function preventInvalidInput(e) {
+        if (!/[0-9]/.test(e.key)) {
+            e.preventDefault();
         }
     }
 
@@ -158,14 +180,21 @@ document.addEventListener('DOMContentLoaded', function() {
             input.value = formatNumber(AG_CALC_CONFIG.defaults[key]);
         }
         input.addEventListener('input', handleInput);
-        input.addEventListener('keypress', function(e) {
-            if (!/[0-9]/.test(e.key)) e.preventDefault();
-        });
+        input.addEventListener('keypress', preventInvalidInput);
 
         if (input.id === 'ag-input-years') {
             input.addEventListener('blur', handleBlur);
         }
     });
+
+    // Инициализация уведомления для поля "лет"
+    const yearsHint = document.getElementById('ag-input-years-hint');
+    if (yearsHint) {
+        const yearsValue = parseInt(sanitizeInput(inputs.years.value)) || 0;
+        if (yearsValue < AG_CALC_CONFIG.minYears) {
+            yearsHint.classList.add('is-visible');
+        }
+    }
 
     calculate();
 });

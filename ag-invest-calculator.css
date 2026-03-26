@@ -1,13 +1,14 @@
 /* Настройки дизайна */
 :root {
-    --ag-accent-color: #d3cb9c;
+    --ag-accent-color: #002635;
     --ag-id-color: #16425B;
-    --ag-text-color: #ffffff;
-    --ag-bg-container: #16425B;
+    --ag-gold-color: #D4AF37;
+    --ag-text-color: #000;
+    --ag-bg-container: #E4E8EA;
     --ag-bg-card: rgba(255, 255, 255, 0.05);
     --ag-input-radius: 25px;
-    --ag-border-color: rgba(255, 255, 255, 0.15);
-    --ag-input-border: rgba(255, 255, 255, 0.3);
+    --ag-border-color: light-dark(rgba(0, 0, 0, 25%), rgba(255, 255, 255, 25%));
+    --ag-input-border: light-dark(rgba(0, 0, 0, 25%), rgba(255, 255, 255, 25%));
 }
 
 .ag-calc-container {
@@ -15,7 +16,7 @@
     width: 100%;
     margin: 40px auto;
     padding: 30px;
-    background: var(--ag-bg-container);
+    /* background: var(--ag-bg-container); */
     border-radius: 12px;
     box-shadow: 0 4px 30px rgba(255, 255, 255, 0.05);
     color: var(--ag-text-color);
@@ -114,8 +115,20 @@
 }
 
 .ag-calc-field {
-    margin-bottom: 27px;
+    margin-bottom: 14px;
     position: relative;
+}
+
+.ag-calc-field-hint {
+    display: none;
+    font-size: 13px;
+    color: var(--ag-accent-color);
+    margin-top: 8px;
+    opacity: 0.8;
+}
+
+.ag-calc-field-hint.is-visible {
+    display: block;
 }
 
 .ag-calc-field label {
@@ -129,7 +142,7 @@
     padding: 0.6rem 1.2rem;
     background: var(--ag-bg-card);
     border: 1px solid var(--ag-input-border);
-    color: #fff;
+    color: var(--ag-text-color);
     border-radius: var(--ag-input-radius);
     width: 100%;
     box-sizing: border-box;
@@ -146,7 +159,7 @@
     background: rgba(255, 255, 255, 0.04);
     padding: 25px;
     border-radius: 12px;
-    border: 1px solid var(--ag-border-color);
+    border: 1px solid var(--ag-gold-color);
     text-align: center;
     height: 100%;
     box-sizing: border-box;
@@ -155,7 +168,7 @@
 .ag-calc-result-item {
     margin-bottom: 22px;
     padding-bottom: 15px;
-    border-bottom: 1px solid var(--ag-border-color);
+    border-bottom: 1px solid var(--ag-gold-color);
 }
 
 .ag-calc-result-item:last-child {
@@ -206,7 +219,7 @@
     margin: 0;
     font-size: 16px;
     line-height: 1.6;
-    color: #ffffff;
+    color: var(--ag-text-color);
 }
 
 .ag-calc-info-description {
@@ -230,7 +243,7 @@
 }
 
 .ag-calc-info-block--highlight .ag-calc-info-content p {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--ag-text-color);
     font-size: 16px;
     line-height: 1.7;
 }
@@ -261,7 +274,7 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     transition: all 0.3s ease;
 }
 
@@ -269,31 +282,27 @@
     margin-bottom: 15px;
 }
 
-.ag-calc-card-value-wrapper {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
 .ag-calc-card-value {
     font-size: 32px;
     font-weight: bold;
+    margin-bottom: 15px;
 }
 
 .ag-calc-card .ag-calc-card-unit {
     font-size: 16px;
     opacity: 0.7;
+    display: block;
+    margin-bottom: 15px;
 }
 
 .ag-calc-card .ag-calc-info-description {
-    margin-top: 25px;
+    margin-top: auto;
     margin-bottom: 0;
 }
 
-.ag-calc-card .ag-calc-card-ratio {
-    margin-top: 10px;
+.ag-calc-card-ratio {
+    margin-top: 0;
+    margin-bottom: 10px;
     color: var(--ag-accent-color);
     font-weight: bold;
     font-size: 20px;
@@ -301,6 +310,7 @@
 
 .ag-calc-card.highlight {
     background: rgba(255, 255, 255, 0.05);
+    border-color: var(--ag-gold-color);
 }
 
 .ag-calc-card:hover {
@@ -308,7 +318,13 @@
     border-color: var(--ag-accent-color);
 }
 
-.ag-calc-card.highlight .ag-calc-card-value { color: var(--ag-accent-color); }
+.ag-calc-card.highlight .ag-calc-card-value {
+    color: var(--ag-gold-color);
+}
+
+.ag-calc-card.highlight .ag-calc-card-ratio {
+    color: var(--ag-gold-color);
+}
 
 .ag-calc-footer {
     margin-top: 40px;
@@ -316,7 +332,7 @@
     border-top: 1px solid var(--ag-border-color);
     font-size: 16px;
     text-align: center;
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--ag-text-color);
     line-height: 1.5;
 }
 
@@ -358,5 +374,4 @@
 
 @media (max-width: 599px) {
     .ag-calc-columns { flex-direction: column; }
-    .ag-calc-card { min-width: 285px; }
 }
