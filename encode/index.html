@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инвестиционный калькулятор</title>
+    <link rel="stylesheet" href="ag-invest-calculator-encode.css">
+</head>
+<body>
+    <div class="ag-calc-container">
+        <div class="ag-calc-main-grid">
+            <div class="ag-calc-column">
+                <p class="ag-calc-hint" style="font-size: 16px;">Заполните поля ввода</p>
+                <div class="ag-calc-inputs">
+                    <div class="ag-calc-field">
+                        <label for="ag-input-income">Среднемесячный личный доход (₽)</label>
+                        <input type="text" id="ag-input-income" inputmode="numeric" placeholder="0">
+                    </div>
+                    <div class="ag-calc-field">
+                        <label for="ag-input-hours">Рабочих / бизнес часов в месяц</label>
+                        <input type="text" id="ag-input-hours" inputmode="numeric" placeholder="0">
+                    </div>
+                    <div class="ag-calc-field">
+                        <label for="ag-input-invest">Сколько инвестировать в месяц (₽)</label>
+                        <input type="text" id="ag-input-invest" inputmode="numeric" placeholder="0">
+                    </div>
+                    <div class="ag-calc-field">
+                        <label for="ag-input-years">Сколько лет инвестировать (от 10)</label>
+                        <input type="text" id="ag-input-years" inputmode="numeric" placeholder="0">
+                        <span class="ag-calc-field-hint" id="ag-input-years-hint">Укажите от 10 лет</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ag-calc-column">
+                <div class="ag-calc-results">
+                    <div class="ag-calc-result-item">
+                        <span>Итого капитал (10% годовых):</span>
+                        <strong id="ag-res-total-capital">0</strong>
+                    </div>
+                    <div class="ag-calc-result-item">
+                        <span>Сколько внесли за все года:</span>
+                        <strong id="ag-res-total-invested">0</strong>
+                    </div>
+                    <div class="ag-calc-result-item">
+                        <span>Доход до налогов:</span>
+                        <strong id="ag-res-profit-before-tax">0</strong>
+                    </div>
+                    <div class="ag-calc-result-item">
+                        <span>Доход после налога 22%:</span>
+                        <strong id="ag-res-profit-after-tax">0</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ag-calc-sidebar">
+                <div class="ag-calc-info-block ag-calc-info-block--highlight">
+                    <div class="ag-calc-info-content">
+                        <p>С точки зрения обмена своего времени на деньги, ни одна работа или бизнес в долгосрок не принесут столько, сколько дадут <b>    долгосрочные грамотные инвестиции.</b>
+                            <br>
+                            <br>
+                            Стратегий и инструментов много — важно подобрать свои.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="ag-calc-subtitle">Какой доход приносит Ваш 1 час?</h3>
+
+            <div class="ag-calc-hourly-columns">
+                <div class="ag-calc-column ag-calc-hourly-card">
+                    <div class="ag-calc-card">
+                        <p class="ag-calc-info-title">На работе / В бизнесе</p>
+                        <div class="ag-calc-card-value" id="ag-res-hourly-work">0</div>
+                        <span class="ag-calc-card-unit">в 1 час</span>
+                        <p class="ag-calc-info-description">Столько приносит ваш 1 час от активной деятельности, приносящей доход.</p>
+                    </div>
+                </div>
+                <div class="ag-calc-column ag-calc-hourly-card">
+                    <div class="ag-calc-card highlight">
+                        <p class="ag-calc-info-title">В долгосрочных инвестициях</p>
+                        <div class="ag-calc-card-value" id="ag-res-hourly-invest">0</div>
+                        <span class="ag-calc-card-unit">в 1 час</span>
+                        <div class="ag-calc-card-ratio" id="ag-res-ratio">Больше в 0 раз(а)</div>
+                        <p class="ag-calc-info-description">Столько приносят долгосрочные инвестиции, на которые Вы тратите <strong>1 час в год</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="ag-calc-footer">
+            Расчёты на данной странице носят информативный характер. Для расчёта взята максимальная ставка по шкале НДФЛ. 
+            <br>
+            Любые инвестиции сопряжены с риском. Реальный результат может отличаться от представленных здесь значений.
+            <br>
+            Не является рекомендацией.
+        </footer>
+    </div>
+
+    <script src="ag-invest-calculator-encode.js"></script>
+</body>
+</html>

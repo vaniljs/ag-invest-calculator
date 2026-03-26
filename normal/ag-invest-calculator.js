@@ -44,15 +44,43 @@ const AG_CALC_CONFIG = {
         40: 6369.4   // 40 лет
     },
 
-    // Значения по умолчанию 
+    // Значения по умолчанию
     defaults: {
         income: 0,  // Среднемесячный доход (₽)
         hours: 0,      // Рабочих часов в месяц
         invest: 0,   // Ежемесячный взнос (₽)
         years: 10        // Срок инвестирования (лет)
-    }
+    },
+
+    // Разрешённые домены (должны содержать оба слова)
+    allowedDomains: ['andrey', 'gonchar'],
+
+    // Включение/выключение защиты домена (true = защита включена)
+    enableDomainProtection: true
 };
 
+// Проверка домена
+(function() {
+    if (!AG_CALC_CONFIG.enableDomainProtection) {
+        AG_CALC_CONFIG.isAuthorized = true;
+        return;
+    }
+
+    var hostname = window.location.hostname.toLowerCase();
+    var allowed = AG_CALC_CONFIG.allowedDomains || [];
+    AG_CALC_CONFIG.isAuthorized = allowed.length > 0 && allowed.every(function(domain) {
+        return hostname.indexOf(domain.toLowerCase()) !== -1;
+    });
+
+    if (!AG_CALC_CONFIG.isAuthorized) {
+        var container = document.querySelector('.ag-calc-container');
+        if (container) {
+            container.remove();
+        }
+    }
+})();
+
+if (AG_CALC_CONFIG.isAuthorized) {
 document.addEventListener('DOMContentLoaded', function() {
     const inputs = {
         income: document.getElementById('ag-input-income'),
@@ -76,7 +104,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function sanitizeInput(val) {
-        return val.replace(/\D/g, '');
+        let sanitized = val.replace(/\D/g, '');
+        // Удаляем ведущие нули, но оставляем один ноль если число равно 0
+        sanitized = sanitized.replace(/^0+(\d)/, '$1');
+        return sanitized;
     }
 
     function handleInput(e) {
@@ -198,3 +229,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
     calculate();
 });
+}
